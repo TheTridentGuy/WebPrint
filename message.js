@@ -1,6 +1,6 @@
-var INFO_COLOR = "var(--info)";
-var WARN_COLOR = "var(--warn)";
-var ERROR_COLOR = "var(--error)";
+const INFO_COLOR = "var(--info)";
+const WARN_COLOR = "var(--warn)";
+const ERROR_COLOR = "var(--error)";
 
 export function info(message) {
     _set_color(INFO_COLOR);
@@ -18,7 +18,7 @@ export function error(message) {
 }
 
 function _set_color(color) {
-    document.getElementById("message-box").style.color = color;
+    document.getElementById("message-box").style.backgroundColor = color;
 }
 
 function _set_message(message) {

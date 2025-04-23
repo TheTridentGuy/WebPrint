@@ -11,15 +11,14 @@
 <body>
   <div class="flex-row">
     <div class="flex-grow button" id="connect-btn">CONNECT</div>
-    <div class="flex-grow button">PRINT</div>
+    <div class="flex-grow button" id="print-btn">PRINT</div>
   </div>
   <div class="flex-grow flex-col">
-
+    <div class="flex-row">
+      <canvas width="384px" id="image-canvas"></canvas>
+    </div>
   </div>
-  <div id="message-box"></div>
-  <script>
-    
-  </script>
+  <div id="message-box">Press connect to get started...</div>
   <script>eruda.init();</script>
 </body>
 </html>
