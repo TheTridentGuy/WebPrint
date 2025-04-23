@@ -37,6 +37,7 @@ body {
     margin-right: .5vmin;
     text-align: center;
     flex-basis: 100%;
+    user-select: none;
 }
 .button:hover {
     background-color: var(--dark);

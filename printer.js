@@ -1,5 +1,5 @@
 // yes i ripped this from https://github.com/dropalltables/catprinter/blob/main/js/printer.js and refactored it a bunch
-import {info, warn, error} from "./message.js";
+import { info, warn, error } from "./message.js";
 
 export const PRINTER_WIDTH = 384;
 export const PRINTER_WIDTH_BYTES = PRINTER_WIDTH / 8;

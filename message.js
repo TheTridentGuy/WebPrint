@@ -1,6 +1,6 @@
-INFO_COLOR = "var(--info)";
-WARN_COLOR = "var(--warn)";
-ERROR_COLOR = "var(--error)";
+var INFO_COLOR = "var(--info)";
+var WARN_COLOR = "var(--warn)";
+var ERROR_COLOR = "var(--error)";
 
 export function info(message) {
     _set_color(INFO_COLOR);
