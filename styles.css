@@ -44,6 +44,9 @@ body {
     user-select: none;
     margin-bottom: 5px;
 }
+.button:first-child {
+    margin-top: 5px;
+}
 .button:hover {
     background-color: var(--dark);
     color: var(--light);
@@ -54,6 +57,7 @@ body {
     padding: 5px;
 }
 canvas {
+    background-color: white;
     border: 2px solid var(--dark);
     border-top: 2px dashed var(--dark);
     border-bottom: 2px dashed var(--dark);

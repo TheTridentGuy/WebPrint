@@ -439,13 +439,14 @@ export async function print_image(canvas) {
         
         if (!complete) {
             console.warn('No print-complete notification received');
+            warn("Never recieved print-complete.");
         } else {
             const print_time = (Date.now() - start_time) / 1000;
             console.info('Print completed successfully', { 
             execution_time: print_time.toFixed(1) + 's',
             lines_per_second: (height / print_time).toFixed(1)
             });
-            info("Connected to printer.")
+            info("Connected to printer.");
         }
         } catch (error) {
         error("Unknown error during printing.")
