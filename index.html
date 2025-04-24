@@ -9,16 +9,26 @@
   <script type="module" src="./main.js"></script>
 </head>
 <body>
-  <div class="flex-row">
-    <div class="flex-grow button" id="connect-btn">CONNECT</div>
-    <div class="flex-grow button" id="print-btn">PRINT</div>
-  </div>
-  <div class="flex-grow flex-col">
+  <div id="message-box">Disconnected from printer.</div>
+  <div class="main-container flex-col flex-grow">
+    <div class="flex-grow flex-col">
+      <div class="flex-row">
+        <div class="flex-grow"></div>
+        <canvas width="384px" height="100px" id="image-canvas"></canvas>
+        <div class="flex-grow"></div>
+      </div>
+    </div>
     <div class="flex-row">
-      <canvas width="384px" id="image-canvas"></canvas>
+      <input type="file" id="image-file" style="display: none;">
+      <label class="flex-grow" for="image-file">
+        <div class="button">SELECT IMAGE</div>
+      </label>
+    </div>
+    <div class="flex-row">
+      <div class="flex-grow button" id="connect-btn">CONNECT</div>
+      <div class="flex-grow button" id="print-btn">PRINT</div>
     </div>
   </div>
-  <div id="message-box">Press connect to get started...</div>
   <script>eruda.init();</script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 // yes i ripped this from https://github.com/dropalltables/catprinter/blob/main/js/printer.js and refactored it a bunch
+// TODO: this code is ass, clean it up
 import { info, warn, error } from "./message.js";
 
 export const PRINTER_WIDTH = 384;
@@ -182,7 +183,7 @@ export async function connect_printer() {
         error("Bluetooth not supported in this browser");
     }
     if (device && device.gatt.connected) {
-        info("Already connected to printer");
+        info("Connected to printer.");
         return;
     }
     info("Requesting Bluetooth device...");
@@ -196,7 +197,7 @@ export async function connect_printer() {
         });
         info(`Device found: "${device.name || "Unknown device"}"`);
     } catch (err) {
-        warn("Failed to find device", { error: err.message });
+        warn("Failed to find device...");
         device = await navigator.bluetooth.requestDevice({
             acceptAllDevices: true,
             optionalServices: [MAIN_SERVICE_UUID, MAIN_SERVICE_UUID_ALT, CONTROL_WRITE_UUID, DATA_WRITE_UUID]
@@ -205,7 +206,7 @@ export async function connect_printer() {
     }
     info("Connecting to GATT server...");
     server = await device.gatt.connect();
-    info("Connected to GATT server");
+    info("Connected to GATT server.");
     let service;
     try {
         console.debug(`Attempting to get primary service: ${MAIN_SERVICE_UUID}`);
@@ -220,7 +221,7 @@ export async function connect_printer() {
     notify_char = await service.getCharacteristic("0000ae02-0000-1000-8000-00805f9b34fb");
     await notify_char.startNotifications();
     notify_char.addEventListener("characteristicvaluechanged", handle_notification);
-    info("Connected to printer!");
+    info("Connected to printer.");
 }
 
 export async function get_battery_level() {
@@ -315,10 +316,10 @@ export function get_last_known_battery_level() {
 }
 
 export async function print_image(canvas) {
-    console.info('Starting print job');
+    info("Preparing to print...")
     const start_time = Date.now();
     
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     const { width, height } = canvas;
     
     console.info('Canvas dimensions', { width, height });
@@ -395,7 +396,6 @@ export async function print_image(canvas) {
         console.debug('Step 3: Send print request');
         await control_char.writeValue(cmd_print_request(height, 0));
         const print_ack = await wait_for_notification(command_ids.print, 5000);
-        
         if (!print_ack || print_ack[0] !== 0) {
             const error = 'Print request rejected: ' + (print_ack ? print_ack[0] : 'no response');
             console.error(error);
@@ -407,7 +407,7 @@ export async function print_image(canvas) {
         let pos = 0;
         let chunk_count = 0;
         const total_chunks = Math.ceil(buffer.length / chunk_size);
-        
+        info("Printing image...")
         console.info('Starting data transfer', {
             total_bytes: buffer.length,
             chunk_size,
@@ -447,8 +447,10 @@ export async function print_image(canvas) {
             execution_time: print_time.toFixed(1) + 's',
             lines_per_second: (height / print_time).toFixed(1)
             });
+            info("Connected to printer.")
         }
         } catch (error) {
+        error("Unknown error during printing.")
         console.error('Printing failed', { message: error.message });
         throw error;
         }

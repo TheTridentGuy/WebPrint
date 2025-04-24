@@ -17,6 +17,8 @@ body {
     left: 0;
     right: 0;
     margin: 0;
+}
+.main-container {
     padding: 5px;
 }
 .flex-col {
@@ -40,18 +42,14 @@ body {
     text-align: center;
     flex-basis: 100%;
     user-select: none;
+    margin-bottom: 5px;
 }
 .button:hover {
     background-color: var(--dark);
     color: var(--light);
 }
 #message-box {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     color: var(--light);
-    background-color: var(--info);
+    background-color: var(--error);
     padding: 5px;
 }
