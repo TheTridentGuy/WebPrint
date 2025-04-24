@@ -78,7 +78,6 @@ function prepare_image_data_buffer(image_rows_bool) {
         buffer = new_buf;
         if (y % 50 === 0 || y === height - 1) {
             console.debug(`Processed row ${y+1}/${height} (${Math.round((y+1)/height*100)}%)`);
-            console.setProgress(Math.round((y+1)/height*50));
         }
     }
     if (buffer.length < MIN_DATA_BYTES) {
