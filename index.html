@@ -28,13 +28,32 @@
       </label>
       <div class="flex-row">
         <div class="button" id="left-btn"><i class="fa-solid fa-rotate-left"></i></div>
-        <div class="button" id="settings-btn"><i class="fa-solid fa-gear"></i></div>
+        <div class="button" id="settings-btn" onclick="document.querySelector('#settings-modal').style.display='flex';"><i class="fa-solid fa-gear"></i></div>
         <div class="button" id="right-btn"><i class="fa-solid fa-rotate-right"></i></div>
       </div>
     </div>
     <div class="flex-row">
       <div class="flex-grow button" id="connect-btn">CONNECT</div>
       <div class="flex-grow button" id="print-btn">PRINT</div>
+    </div>
+  </div>
+  <div id="settings-modal" style="display: none;">
+    <div class="flex-col settings-col">
+      <div class="flex-row settings-row">
+        <span>Dithering:</span>
+      </div>
+      <div class="flex-row settings-row">
+        <input type="radio" name="dither" value="dither-none" checked>
+        <label for="dither-none">None</label>
+      </div>
+      <div class="flex-row settings-row">
+        <input type="radio" name="dither" value="dither-threshold">
+        <label for="dither-none">Threshold: <input type="number" value="128" id="threshold-val"></label>
+      </div>
+    </div>
+    <div class="flex-grow"></div>
+    <div class="flex-row">
+      <div class="button" onclick="document.querySelector('#settings-modal').style.display='none';">CLOSE SETTINGS</div>
     </div>
   </div>
 </body>

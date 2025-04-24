@@ -39,11 +39,11 @@ body {
     padding: 2vmin;
     margin-left: .5vmin;
     margin-right: .5vmin;
+    margin-bottom: 3px;
+    margin-top: 3px;
     text-align: center;
     flex-basis: 100%;
     user-select: none;
-    margin-bottom: 3px;
-    margin-top: 3px;
 }
 .button:hover {
     background-color: var(--dark);
@@ -59,4 +59,26 @@ canvas {
     border: 2px solid var(--dark);
     border-top: 2px dashed var(--dark);
     border-bottom: 2px dashed var(--dark);
+}
+#settings-modal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--light);
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.settings-row, .settings-col {
+    padding: 2vmin;
+    margin-left: .5vmin;
+    margin-right: .5vmin;
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+.settings-col {
+    border: 2px solid var(--dark);
+    border-radius: 2vmin;
 }
