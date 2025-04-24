@@ -47,8 +47,18 @@
         <label for="dither-none">None</label>
       </div>
       <div class="flex-row settings-row">
+        <input type="radio" name="dither" value="dither-fs">
+        <label for="dither-none">Floyd-Steinberg</label>
+      </div>
+      <div class="flex-row settings-row">
         <input type="radio" name="dither" value="dither-threshold">
-        <label for="dither-none">Threshold: <input type="number" value="128" id="threshold-val"></label>
+        <label for="dither-none">Threshold</label>
+      </div>
+      <div class="flex-row settings-row">
+        <span>Dithering threshold:</span>
+      </div>
+      <div class="flex-row settings-row">
+        <input type="number" value="128" id="threshold-val">
       </div>
     </div>
     <div class="flex-grow"></div>

@@ -114,7 +114,7 @@ function create_command(cmd_id, payload) {
     return new Uint8Array([...command, crc, 0xFF]);
 }
 
-function cmd_set_intensity(intensity = 0x5D) { 
+function cmd_set_intensity(intensity = 0xDD) { 
     console.debug(`Setting print intensity to 0x${intensity.toString(16).toUpperCase()}`);
     return create_command(0xA2, Uint8Array.of(intensity)); 
 }
@@ -177,9 +177,6 @@ let device, server, control_char, data_char;
 
 export async function connect_printer() {
     info("Connecting to MXW01...");
-    if (typeof navigator.bluetooth === "undefined") {
-        error("Bluetooth not supported in this browser");
-    }
     if (device && device.gatt.connected) {
         info("Connected to printer.");
         return;
@@ -220,6 +217,11 @@ export async function connect_printer() {
     await notify_char.startNotifications();
     notify_char.addEventListener("characteristicvaluechanged", handle_notification);
     info("Connected to printer.");
+    setInterval(() => {
+        if(!device.gatt.connected){
+            error("Disconnected from printer.")
+        }
+    }, 1000);
 }
 
 export async function get_battery_level() {
@@ -454,3 +456,4 @@ export async function print_image(canvas) {
         throw error;
         }
     }
+

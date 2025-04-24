@@ -55,8 +55,11 @@ function draw_image(){
             context.drawImage(image, 0, 0, canvas.width, canvas.height);
             var dither = $("input[type='radio']:checked").value;
             var image_data = context.getImageData(0, 0, canvas.width, canvas.height);
+            var threshold = $("#threshold-val").value;
             if(dither == "dither-threshold"){
-                threshold(image_data, $("#threshold-val").value);
+                threshold(image_data, threshold);
+            }else if(dither == "dither-fs"){
+                floyd_steinberg(image_data, threshold);
             }else{
                 return;
             }
@@ -103,10 +106,53 @@ function rotate_right(){
     draw_image();
 }
 
-function threshold(image_data, threshold) {
+function threshold(image_data, threshold){
     var data = image_data.data;
     for (let i = 0; i < data.length; i += 4) {
         var v = data[i] < threshold ? 0 : 255;
         data[i] = data[i + 1] = data[i + 2] = v;
+    }
+}
+
+function floyd_steinberg(image_data, threshold){
+    var width = image_data.width;
+    var height = image_data.height;
+    var data = image_data.data;
+    var luminance = new Array(width * height);
+    for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
+            var idx = (i * width + j) * 4;
+            luminance[i * width + j] = data[idx];
+        }
+    }
+    for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
+            var idx = i * width + j;
+            var oldPixel = luminance[idx];
+            var newPixel = oldPixel < threshold ? 0 : 255;
+            luminance[idx] = newPixel;
+            
+            var error = oldPixel - newPixel;
+            
+            if (j + 1 < width) {
+                luminance[idx + 1] += error * 7 / 16;
+            }
+            if (i + 1 < height) {
+                if (j - 1 >= 0) {
+                    luminance[(i + 1) * width + j - 1] += error * 3 / 16;
+                }
+                luminance[(i + 1) * width + j] += error * 5 / 16;
+                if (j + 1 < width) {
+                    luminance[(i + 1) * width + j + 1] += error * 1 / 16;
+                }
+            }
+        }
+    }
+    for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
+            var idx = (i * width + j) * 4;
+            var v = luminance[i * width + j];
+            data[idx] = data[idx + 1] = data[idx + 2] = v;
+        }
     }
 }
