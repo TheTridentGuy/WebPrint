@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         print_image($("#image-canvas"));
     })
     $("#image-file").addEventListener("change", (event) => {
+        rotation = 0;
         draw_image();
     })
     $("#left-btn").addEventListener("click", (event) => {
