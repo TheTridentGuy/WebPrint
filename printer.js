@@ -146,7 +146,6 @@ function handle_notification(event) {
     console.debug(`Received notification for command 0x${cmd_id.toString(16).toUpperCase()}`, { 
         payload_length: length
     });
-    console.hex_dump(`Notification payload for command 0x${cmd_id.toString(16).toUpperCase()}`, payload);
     const resolver = pending_resolvers.get(cmd_id);
     if (resolver) {
         resolver(payload);

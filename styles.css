@@ -53,3 +53,8 @@ body {
     background-color: var(--error);
     padding: 5px;
 }
+canvas {
+    border: 2px solid var(--dark);
+    border-top: 2px dashed var(--dark);
+    border-bottom: 2px dashed var(--dark);
+}

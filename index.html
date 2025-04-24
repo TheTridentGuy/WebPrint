@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MXW01 Printer</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
   <script type="module" src="./main.js"></script>
 </head>
 <body>
@@ -17,6 +16,7 @@
         <canvas width="384px" height="100px" id="image-canvas"></canvas>
         <div class="flex-grow"></div>
       </div>
+      <div class="flex-grow"></div>
     </div>
     <div class="flex-row">
       <input type="file" id="image-file" style="display: none;">
@@ -29,6 +29,5 @@
       <div class="flex-grow button" id="print-btn">PRINT</div>
     </div>
   </div>
-  <script>eruda.init();</script>
 </body>
 </html>
