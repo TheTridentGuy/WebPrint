@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MXW01 Printer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <script type="module" src="./main.js"></script>
 </head>
@@ -19,10 +20,17 @@
       <div class="flex-grow"></div>
     </div>
     <div class="flex-row">
+    </div>
+    <div class="flex-row">
       <input type="file" id="image-file" style="display: none;">
       <label class="flex-grow" for="image-file">
         <div class="button">SELECT IMAGE</div>
       </label>
+      <div class="flex-row">
+        <div class="button" id="left-btn"><i class="fa-solid fa-rotate-left"></i></div>
+        <div class="button"><i class="fa-solid fa-gear"></i></div>
+        <div class="button" id="right-btn"><i class="fa-solid fa-rotate-right"></i></div>
+      </div>
     </div>
     <div class="flex-row">
       <div class="flex-grow button" id="connect-btn">CONNECT</div>
