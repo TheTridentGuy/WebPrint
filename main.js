@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     if (typeof navigator.bluetooth == "undefined"){
-        error("WebBluetooth is not supported in this browser.");
+        error("WebBluetooth is not supported in this browser. Use Chrome on android, or Edge/Chrome on desktop.");
         connect_btn.style.cursor = "not-allowed";
         print_btn.style.cursor = "not-allowed";
     }else{
