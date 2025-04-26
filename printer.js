@@ -192,12 +192,8 @@ export async function connect_printer() {
         });
         info(`Device found: "${device.name || "Unknown device"}"`);
     } catch (err) {
-        warn("Failed to find device...");
-        device = await navigator.bluetooth.requestDevice({
-            acceptAllDevices: true,
-            optionalServices: [MAIN_SERVICE_UUID, MAIN_SERVICE_UUID_ALT, CONTROL_WRITE_UUID, DATA_WRITE_UUID]
-        });
-        info(`Device found (fallback): "${device.name || "Unknown device"}"`);
+        console.log(err)
+        error("Disconnected from printer.")
     }
     info("Connecting to GATT server...");
     server = await device.gatt.connect();

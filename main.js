@@ -55,11 +55,11 @@ function draw_image(){
             context.drawImage(image, 0, 0, canvas.width, canvas.height);
             var dither = $("input[type='radio']:checked").value;
             var image_data = context.getImageData(0, 0, canvas.width, canvas.height);
-            var threshold = $("#threshold-val").value;
+            var threshold_val = $("#threshold-val").value;
             if(dither == "dither-threshold"){
-                threshold(image_data, threshold);
+                threshold(image_data, threshold_val);
             }else if(dither == "dither-fs"){
-                floyd_steinberg(image_data, threshold);
+                floyd_steinberg(image_data, threshold_val);
             }else{
                 return;
             }
