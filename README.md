@@ -6,4 +6,4 @@
 > - #### Opera (Desktop and Android)
 > - #### Samsung Internet (Android)
 > - #### Edge (Desktop)
-> ### see the [Web Bluetooth API compatibility table](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API#browser_compatibility) for details.
+> ### see the [Web Bluetooth API browser compatibility table](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API#browser_compatibility) for details.
