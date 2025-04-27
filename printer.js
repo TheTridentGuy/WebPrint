@@ -190,11 +190,11 @@ export async function connect_printer() {
             ],
             optionalServices: [MAIN_SERVICE_UUID, MAIN_SERVICE_UUID_ALT, CONTROL_WRITE_UUID, DATA_WRITE_UUID]
         });
-        info(`Device found: "${device.name || "Unknown device"}"`);
     } catch (err) {
         console.log(err)
         error("Disconnected from printer.")
     }
+    if(!device){error("Disconnected from printer.")}
     info("Connecting to GATT server...");
     server = await device.gatt.connect();
     info("Connected to GATT server.");
