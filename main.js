@@ -11,6 +11,14 @@ var rotation_step = 90;
 document.addEventListener("DOMContentLoaded", () => {
     var connect_btn = $("#connect-btn");
     var print_btn = $("#print-btn");
+    var dither_method = localStorage.getItem("dither-method");
+    if(dither_method){
+        $(`input[value='${dither_method}']`).checked = true;
+    }
+    var threshold = localStorage.getItem("threshold");
+    if(threshold){
+        $("#threshold-val").value = threshold;
+    }
     $("#left-btn").addEventListener("click", (event) => {
         rotate_left();
     });
@@ -22,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if(event.target == $("#image-file")){
                 rotation = 0;
             }
+            save_settings();
             draw_image();
         });
     });
@@ -155,4 +164,9 @@ function floyd_steinberg(image_data, threshold){
             data[idx] = data[idx + 1] = data[idx + 2] = v;
         }
     }
+}
+
+function save_settings(){
+    localStorage.setItem("dither-method", $("input[type='radio']:checked").value);
+    localStorage.setItem("threshold", $("#threshold-val").value);
 }

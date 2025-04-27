@@ -452,4 +452,3 @@ export async function print_image(canvas) {
         throw error;
         }
     }
-
